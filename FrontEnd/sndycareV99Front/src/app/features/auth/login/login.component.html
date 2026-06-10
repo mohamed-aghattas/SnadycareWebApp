@@ -1,0 +1,14 @@
+<div class="login-shell">
+    <div class="login-card">
+      <div class="login-logo"><div class="logo-icon"><i class="ti ti-building-community"></i></div><div class="logo-text">SyndicPro</div></div>
+      <div class="login-title">Welcome back</div>
+      <div class="login-sub">Sign in to manage your syndic</div>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+        <div class="field"><label>Username</label><input formControlName="email" type="text" placeholder="admin"></div>
+        <div class="field"><label>Password</label><input formControlName="password" type="password" placeholder="••••••••"></div>
+   <!-- <div class="hint">Demo: admin / admin123</div> -->
+        <div *ngIf="error" class="error-msg"><i class="ti ti-alert-circle"></i> {{ error }}</div>
+        <button type="submit" [disabled]="loadingForm" class="btn-login">{{ loginForm ? 'Signing in…' : 'Sign in' }}</button>
+      </form>
+    </div>
+  </div>

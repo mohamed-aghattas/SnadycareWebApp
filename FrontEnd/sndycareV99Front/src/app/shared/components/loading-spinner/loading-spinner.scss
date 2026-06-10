@@ -1,0 +1,32 @@
+$spinner-overlay-bg: rgba(255, 255, 255, 0.75);
+$spinner-blur-amount: 2px;
+$spinner-gap: 12px;
+$z-index-overlay: 50;
+
+.spinner-overlay {
+  position: absolute;
+  inset: 0;
+  background: $spinner-overlay-bg;
+  backdrop-filter: blur($spinner-blur-amount);
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: $z-index-overlay;
+
+
+  .spinner-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $spinner-gap;
+    
+    .ti-loader-2 {
+      transition: transform 0.3s ease;
+    }
+
+    span {
+      user-select: none; 
+    }
+  }
+}

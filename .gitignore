@@ -1,0 +1,54 @@
+########################################
+# ========== BACKEND (Spring Boot) ==========
+########################################
+backend/target/
+backend/mvnw.cmd
+backend/mvnw
+backend/.mvn/
+
+*.jar
+*.war
+*.class
+
+########################################
+# ========== FRONTEND (Angular) ==========
+########################################
+frontend/node_modules/
+frontend/dist/
+frontend/.angular/
+frontend/coverage/
+
+########################################
+# ========== IDE ==========
+########################################
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+.factorypath
+.sts4-cache
+
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+########################################
+# ========== SYSTEM ==========
+########################################
+.DS_Store
+Thumbs.db
+
+########################################
+# ========== LOGS ==========
+########################################
+*.log
+npm-debug.log*
+yarn-error.log
+
+########################################
+# ========== ANGULAR CACHE ==========
+########################################
+.sass-cache/
+.angular/cache/

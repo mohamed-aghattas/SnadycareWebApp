@@ -1,0 +1,18 @@
+.app-shell{display:flex;height:100vh;overflow:hidden}
+.sidebar{width:210px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column}
+.sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+.logo-icon{width:30px;height:30px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
+.logo-text{font-size:14px;font-weight:600;color:var(--text-1)}
+.logo-sub{font-size:11px;color:var(--text-3)}
+.sidebar-nav{padding:12px 10px;flex:1;overflow-y:auto}
+.nav-group-label{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;padding:10px 8px 4px}
+.nav-link{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:10px;font-size:13px;color:var(--text-2);margin-bottom:2px;transition:all .15s;text-decoration:none;i{font-size:17px;width:20px}&:hover{background:var(--bg);color:var(--text-1)}&.active{background:var(--brand-light);color:var(--brand-dark);font-weight:500}}
+.nav-badge{margin-left:auto;background:#E24B4A;color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:20px}
+.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border)}
+.user-row{display:flex;align-items:center;gap:9px;padding:6px 8px}
+.avatar-chip{width:28px;height:28px;border-radius:50%;background:#CECBF6;color:#3C3489;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
+.user-info{flex:1;min-width:0}
+.user-name{font-size:12px;font-weight:500;color:var(--text-1)}
+.user-role{font-size:10px;color:var(--text-3)}
+.icon-btn{background:none;border:none;cursor:pointer;color:var(--text-3);display:flex;align-items:center;justify-content:center;font-size:16px;padding:4px;border-radius:6px;&:hover{background:var(--bg);color:var(--text-1)}}
+.main-area{flex:1;overflow:hidden;display:flex;flex-direction:column}

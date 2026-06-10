@@ -1,0 +1,27 @@
+<div class="app-shell">
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon"><i class="ti ti-building-community"></i></div>
+      <div><div class="logo-text">SyndicPro</div><div class="logo-sub">Résidence {{getResidence()}}</div></div>
+    </div>
+    <nav class="sidebar-nav">
+      <ng-container *ngFor="let g of groups">
+        <div class="nav-group-label">{{ g }}</div>
+        <a *ngFor="let item of getItems(g)" class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+          <i class="ti {{ item.icon }}"></i><span>{{ item.label }}</span>
+          <span *ngIf="item.badge" class="nav-badge">{{ item.badge }}</span>
+        </a>
+      </ng-container>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="user-row">
+        <div class="avatar-chip">{{ initials() }}</div>
+        <div class="user-info"><div class="user-name">{{ user?.username }}</div><div class="user-role">{{ user?.role }}</div></div>
+        <button class="icon-btn" (click)="logout()" title="Logout"><i class="ti ti-logout"></i></button>
+      </div>
+    </div>
+  </aside>
+  <div class="main-area">
+      
+    <router-outlet /></div>
+</div>
