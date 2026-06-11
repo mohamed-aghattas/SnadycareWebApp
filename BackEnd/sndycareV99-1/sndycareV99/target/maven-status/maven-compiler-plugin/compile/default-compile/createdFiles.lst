@@ -10,7 +10,6 @@ com\orca\sndycareV99\entity\Document$DocumentBuilder.class
 com\orca\sndycareV99\entity\Meeting$MeetingBuilder.class
 com\orca\sndycareV99\entity\Meeting.class
 com\orca\sndycareV99\entity\Charge$Frequency.class
-com\orca\sndycareV99\security\config\CorsConfig.class
 com\orca\sndycareV99\auth\dto\RegisterRequest.class
 com\orca\sndycareV99\entity\Property.class
 com\orca\sndycareV99\entity\Residence$ResidenceBuilder.class
@@ -32,6 +31,7 @@ com\orca\sndycareV99\security\Handler\CustomAccessDeniedHandler.class
 com\orca\sndycareV99\auth\jwt\JwtService.class
 com\orca\sndycareV99\entity\Expense.class
 com\orca\sndycareV99\entity\Reclamation$ReclamationBuilder.class
+com\orca\sndycareV99\controller\AccountController.class
 com\orca\sndycareV99\entity\Member.class
 com\orca\sndycareV99\auth\controller\AuthController.class
 com\orca\sndycareV99\security\user\CustomUserDetails.class

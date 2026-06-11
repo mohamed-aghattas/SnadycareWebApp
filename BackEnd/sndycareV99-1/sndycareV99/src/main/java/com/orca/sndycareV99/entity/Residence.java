@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "residences")
@@ -37,7 +39,23 @@ public class Residence  {
             foreignKey = @ForeignKey(name = "fk_residences_creator"))
     private User createdBy;
 
+    @OneToMany(mappedBy = "residence" , cascade = CascadeType.ALL , orphanRemoval = true)
+    @Builder.Default
+    List<Account> accounts = new ArrayList<>();
+
+
     @CreationTimestamp
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+
+    public void addAcount(Account account){
+        accounts.add(account);
+        account.setResidence(this);
+    }
+
+    public void removeAcount(Account account){
+        accounts.remove(account);
+        account.setResidence(null);
+    }
 }

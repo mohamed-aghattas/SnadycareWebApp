@@ -13,10 +13,10 @@ backend/.mvn/
 ########################################
 # ========== FRONTEND (Angular) ==========
 ########################################
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
-frontend/coverage/
+frontend/**/node_modules/
+frontend/**/dist/
+frontend/**/.angular/
+frontend/**/coverage/
 
 ########################################
 # ========== IDE ==========
