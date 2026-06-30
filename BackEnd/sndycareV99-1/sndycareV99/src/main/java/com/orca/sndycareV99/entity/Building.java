@@ -26,4 +26,9 @@ public class Building  implements BelongsToResidence {
     private String name;
 
     private Integer floors;
+
+    @Override
+    public Residence getResidence() {
+        return this.residence;
+    }
 }
