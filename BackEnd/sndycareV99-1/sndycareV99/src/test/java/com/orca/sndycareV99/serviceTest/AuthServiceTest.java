@@ -37,7 +37,7 @@ public class AuthServiceTest {
     void testAuthenticate_Success() {
         // 1. Arrange
         LoginRequest request = new LoginRequest("test@test.com", "password");
-        User mockUser = User.builder().email("test@test.com").role(new Role("USER")).build();
+        User mockUser = User.builder().email("test@test.com").role(new Role(1L,"USER")).build();
 
         when(userRepository.findByEmail(anyString())).thenReturn(Optional.of(mockUser));
         when(jwtService.generateToken(any())).thenReturn("fake-jwt-token");
