@@ -34,4 +34,9 @@ public class Account implements BelongsToResidence {
     @Column(precision = 12, scale = 2)
     @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
+
+    @Override
+    public Residence getResidence() {
+        return null;
+    }
 }

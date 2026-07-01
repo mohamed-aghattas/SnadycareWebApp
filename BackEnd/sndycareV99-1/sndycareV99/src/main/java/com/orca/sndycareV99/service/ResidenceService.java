@@ -16,7 +16,6 @@ import java.util.Optional;
 
 @Service
 @AllArgsConstructor
-
 public class ResidenceService {
 
     private final ResidenceRepository residenceRepository;
