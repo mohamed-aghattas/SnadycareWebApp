@@ -7,10 +7,17 @@
     <nav class="sidebar-nav">
       <ng-container *ngFor="let g of groups">
         <div class="nav-group-label">{{ g }}</div>
-        <a *ngFor="let item of getItems(g)" class="nav-link" [routerLink]="item.route" routerLinkActive="active">
-          <i class="ti {{ item.icon }}"></i><span>{{ item.label }}</span>
-          <span *ngIf="item.badge" class="nav-badge">{{ item.badge }}</span>
-        </a>
+        <ng-container *ngFor="let item of getItems(g)">
+          <a class="nav-link" [routerLink]="item.route" routerLinkActive="active">
+            <i class="ti {{ item.icon }}"></i><span>{{ item.label }}</span>
+            <span *ngIf="item.badge" class="nav-badge">{{ item.badge }}</span>
+          </a>
+          <div *ngIf="item.children" class="nav-subgroup">
+            <a *ngFor="let child of item.children" class="nav-sub-link" [routerLink]="child.route" routerLinkActive="active">
+              <span>{{ child.label }}</span>
+            </a>
+          </div>
+        </ng-container>
       </ng-container>
     </nav>
     <div class="sidebar-footer">
@@ -22,6 +29,6 @@
     </div>
   </aside>
   <div class="main-area">
-      
-    <router-outlet /></div>
+    <router-outlet></router-outlet>
+  </div>
 </div>

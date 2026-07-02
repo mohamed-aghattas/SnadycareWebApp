@@ -1,10 +1,136 @@
-.login-shell{min-height:100vh;background:var(--bg);display:flex;align-items:center;justify-content:center}
-    .login-card{width:360px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px;box-shadow:var(--shadow-md)}
-    .login-logo{display:flex;align-items:center;gap:10px;margin-bottom:24px} .logo-icon{width:36px;height:36px;background:var(--brand);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px} .logo-text{font-size:18px;font-weight:700;color:var(--text-1)}
-    .login-title{font-size:20px;font-weight:700;color:var(--text-1);margin-bottom:4px} .login-sub{font-size:13px;color:var(--text-3);margin-bottom:24px}
-    .login-form{display:flex;flex-direction:column;gap:14px} .field{display:flex;flex-direction:column;gap:5px} label{font-size:12px;font-weight:500;color:var(--text-2)}
-    input{padding:9px 12px;border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-1);outline:none;background:var(--surface);&:focus{border-color:var(--brand)}}
-    .hint{font-size:11px;color:var(--text-3);background:var(--bg);padding:6px 10px;border-radius:8px;text-align:center}
-    .error-msg{background:var(--danger-bg);color:var(--danger-dark);font-size:12px;padding:8px 12px;border-radius:8px;display:flex;align-items:center;gap:6px}
-    .btn-login{background:var(--brand);color:#fff;border:none;padding:11px;border-radius:10px;font-size:14px;font-weight:600;cursor:pointer;&:hover{background:var(--brand-dark)}&:disabled{opacity:.6;cursor:not-allowed}}
- 
+/* Login Layout Shell */
+.login-shell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #FFFFFF; /* Amazon login pages traditionally use crisp white backgrounds */
+  padding: 20px;
+}
+
+/* Auth Card Container */
+.login-card {
+  width: 100%;
+  max-width: 350px; /* Standard compact Amazon form width */
+  border: 1px solid #DDD;
+  border-radius: 4px;
+  padding: 26px 24px;
+  background: #FFFFFF;
+}
+
+/* Brand/Logo Styling */
+.login-logo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 18px;
+  justify-content: center;
+}
+.logo-icon i {
+  font-size: 20px;
+  color: #131921; /* Dark navy */
+}
+.logo-text {
+  font-size: 19px;
+  font-weight: 700;
+  color: #0F1111;
+  letter-spacing: -0.5px;
+}
+
+/* Typography Headers */
+.login-title {
+  font-size: 28px;
+  font-weight: 400; /* Amazon uses a lighter weight for main auth headers */
+  color: #0F1111;
+  line-height: 1.2;
+  margin-bottom: 6px;
+}
+.login-sub {
+  font-size: 13px;
+  color: #565959;
+  margin-bottom: 18px;
+}
+
+/* Angular Form Stack */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* Input Fields */
+.login-form .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.login-form .field label {
+  font-size: 13px;
+  font-weight: 700;
+  color: #0F1111;
+}
+.login-form .field input {
+  padding: 7px 10px;
+  border: 1px solid #A6A9A9;
+  border-top-color: #949494;
+  border-radius: 3px;
+  font-size: 13px;
+  color: #0F1111;
+  outline: none;
+  background: #FFFFFF;
+  box-shadow: 0 1px 0 rgba(255,255,255,.5), 0 1px 0 rgba(0,0,0,.07) inset;
+  transition: all 0.1s ease;
+}
+.login-form .field input:focus {
+  border-color: #E47911;
+  box-shadow: 0 0 0 3px rgba(228,121,17,.5); /* Focus amber ring */
+}
+.login-form .field input::placeholder {
+  color: #767676;
+}
+
+/* Error Alerts (Amazon Warning Box Variant) */
+.error-msg {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 10px 14px;
+  background-color: #FFF5F5;
+  border: 1px solid #B12704;
+  border-radius: 4px;
+  font-size: 12px;
+  color: #B12704;
+  line-height: 1.4;
+}
+.error-msg i {
+  font-size: 15px;
+  margin-top: 1px;
+}
+
+/* Amazon Action Call to Action Button */
+.btn-login {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 14px;
+  background: #FFD814;
+  border: 1px solid #FCD200;
+  border-radius: 8px; /* Modern pill style button */
+  font-size: 13px;
+  font-weight: 400;
+  color: #0F1111;
+  cursor: pointer;
+  box-shadow: 0 2px 5px 0 rgba(213,217,217,.5);
+  transition: background 0.1s ease;
+  margin-top: 4px;
+}
+.btn-login:hover {
+  background: #F7CA00;
+  border-color: #F2C200;
+}
+.btn-login:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  box-shadow: none;
+}

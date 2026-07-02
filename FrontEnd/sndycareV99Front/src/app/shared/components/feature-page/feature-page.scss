@@ -1,0 +1,34 @@
+.feature-page {
+  padding: 24px;
+}
+
+.feature-header {
+  margin-bottom: 18px;
+}
+
+.feature-header h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+
+.subtitle {
+  margin: 6px 0 0;
+  color: var(--text-3);
+  font-size: 14px;
+}
+
+.feature-body {
+  display: grid;
+  gap: 14px;
+}
+
+.feature-card {
+  padding: 22px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  box-shadow: 0 1px 6px rgba(0,0,0,.04);
+  color: var(--text-1);
+}

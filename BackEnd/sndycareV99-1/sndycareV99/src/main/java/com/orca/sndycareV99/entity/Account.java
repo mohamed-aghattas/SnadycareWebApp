@@ -31,12 +31,24 @@ public class Account implements BelongsToResidence {
     @Column(name = "account_name", nullable = false, length = 255)
     private String accountName;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private AccountType type;
+
     @Column(precision = 12, scale = 2)
     @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
 
+    public enum AccountType {
+        ASSET,
+        LIABILITY,
+        EQUITY,
+        REVENUE,
+        EXPENSE
+    }
+
     @Override
     public Residence getResidence() {
-        return null;
+        return this.residence;
     }
 }

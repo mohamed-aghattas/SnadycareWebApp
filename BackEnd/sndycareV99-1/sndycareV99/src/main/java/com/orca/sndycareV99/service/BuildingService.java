@@ -8,7 +8,6 @@ import com.orca.sndycareV99.entity.Residence;
 import com.orca.sndycareV99.repository.BuildingRepository;
 import com.orca.sndycareV99.repository.ResidenceRepository;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
