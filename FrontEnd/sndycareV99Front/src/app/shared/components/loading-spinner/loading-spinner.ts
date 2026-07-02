@@ -9,10 +9,7 @@ import { CommonModule } from '@angular/common';
   `<div [ngClass]="isOverlay ? 'spinner-overlay' : 'loading-state'">
   <div class="spinner-container">
     <i class="ti ti-loader-2 spin" style="font-size: 24px; color: var(--brand);"></i>
-    
-    @if (message) {
-      <span class="text-muted font-medium">{{ message }}</span>
-    }
+    <span *ngIf="message" class="text-muted font-medium">{{ message }}</span>
   </div>
 </div>`
 })

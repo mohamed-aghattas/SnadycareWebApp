@@ -4,11 +4,26 @@
       <div class="login-title">Welcome back</div>
       <div class="login-sub">Sign in to manage your syndic</div>
       <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
-        <div class="field"><label>Username</label><input formControlName="email" type="text" placeholder="admin"></div>
-        <div class="field"><label>Password</label><input formControlName="password" type="password" placeholder="••••••••"></div>
+        <div class="field">
+          <label>Email</label>
+          <input formControlName="email" type="text" placeholder="admin@example.com">
+          <div class="err" *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.invalid">
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email address.</span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Password</label>
+          <input formControlName="password" type="password" placeholder="••••••••">
+          <div class="err" *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.invalid">
+            <span *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</span>
+            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">Password must be at least 6 characters.</span>
+          </div>
+        </div>
    <!-- <div class="hint">Demo: admin / admin123</div> -->
         <div *ngIf="error" class="error-msg"><i class="ti ti-alert-circle"></i> {{ error }}</div>
-        <button type="submit" [disabled]="loadingForm" class="btn-login">{{ loginForm ? 'Signing in…' : 'Sign in' }}</button>
+        <button type="submit" [disabled]="loadingForm" class="btn-login">{{ loadingForm ? 'Signing in…' : 'Sign in' }}</button>
       </form>
     </div>
   </div>

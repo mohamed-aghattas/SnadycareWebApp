@@ -9,14 +9,13 @@ backend/.mvn/
 *.jar
 *.war
 *.class
-
 ########################################
 # ========== FRONTEND (Angular) ==========
 ########################################
-frontend/node_modules/
-frontend/dist/
-frontend/.angular/
-frontend/coverage/
+FrontEnd/sndycareV99Front/node_modules/
+FrontEnd/sndycareV99Front/dist/
+FrontEnd/sndycareV99Front/.angular/
+FrontEnd/sndycareV99Front/coverage/
 
 ########################################
 # ========== IDE ==========

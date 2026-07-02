@@ -1,0 +1,220 @@
+/* ==========================================================================
+   Amazon Enterprise Console Architecture Style - Residence DTO Context
+   ========================================================================== */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: none; 
+  overflow: hidden;
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    background-color: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-1);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      i {
+        font-size: 16px;
+        color: var(--text-2);
+      }
+    }
+  }
+
+  .card-body {
+    padding: 16px;
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+
+      /* Flat structural dividers across fields groups */
+      .form-section {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-1);
+        padding: 12px 0 4px;
+        border-top: 1px solid var(--border);
+        margin-top: 4px;
+
+        &:first-of-type {
+          border-top: none;
+          margin-top: 0;
+          padding-top: 0;
+        }
+      }
+
+      /* Native grid structure alignment layout matching your rules */
+      .field-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+      }
+
+      /* Clean Amazon Input System elements */
+      .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        label {
+          font-size: 13px;
+          font-weight: 700;
+          color: var(--text-1);
+
+          .required {
+            color: var(--danger);
+            margin-left: 2px;
+          }
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+          padding: 5px 8px;
+          border: 1px solid #A6A9A9;
+          border-top-color: #949494;
+          border-radius: var(--radius-sm); /* Sharp 3px finish */
+          font-size: 13px;
+          color: var(--text-1);
+          outline: none;
+          background: var(--surface);
+          box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 0 rgba(0, 0, 0, 0.07) inset;
+          transition: border-color 0.1s ease, box-shadow 0.1s ease;
+
+          &:focus {
+            border-color: var(--brand-dark);
+            box-shadow: 0 0 0 3px rgba(228, 121, 17, 0.5); /* Brand Amber Glow */
+          }
+
+          &::placeholder {
+            color: var(--text-3);
+          }
+        }
+        
+        select {
+          cursor: pointer;
+          padding-right: 20px;
+        }
+
+        /* Error Text Responses matching annotation rules */
+        .err {
+          font-size: 12px;
+          color: var(--danger);
+          margin-top: 3px;
+          font-weight: 500;
+          display: flex;
+          flex-direction: column;
+          gap: 1px;
+        }
+      }
+
+      /* Amazon Service Warning Box Implementation */
+      .alert-box-danger {
+        border: 1px solid var(--danger);
+        background-color: var(--danger-bg);
+        margin-top: 8px;
+        padding: 10px 14px;
+        border-radius: var(--radius-md);
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+
+        i {
+          color: var(--danger);
+          font-size: 14px;
+          margin-top: 2px;
+        }
+
+        .alert-content {
+          font-size: 12px;
+          color: var(--danger-dark);
+          line-height: 1.4;
+          
+          strong {
+            color: var(--danger);
+          }
+        }
+      }
+
+      /* Footer Action controls grouping section */
+      .action-panel {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 12px;
+        border-top: 1px solid var(--border);
+        padding-top: 14px;
+
+        .btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          gap: 6px;
+          padding: 6px 14px;
+          border-radius: 8px; /* Amazon Modern Pill Shape */
+          font-size: 12px;
+          font-weight: 400;
+          border: 1px solid;
+          cursor: pointer;
+          box-shadow: 0 2px 5px 0 rgba(213, 217, 217, 0.5);
+          transition: background 0.1s ease;
+
+          /* Action Checkout Gold/Amber Button styling */
+          &-primary {
+            background: #FFD814;
+            border-color: #FCD200;
+            color: #0F1111;
+
+            &:hover:not(:disabled) {
+              background: #F7CA00;
+              border-color: #F2C200;
+            }
+
+            &:disabled {
+              background: #F7FAFA;
+              border-color: var(--border);
+              color: var(--text-3);
+              box-shadow: none;
+              cursor: not-allowed;
+            }
+          }
+
+          /* Context Secondary Button styling */
+          &-outline {
+            background: #FFFFFF;
+            border-color: #D5D9D9;
+            color: var(--text-1);
+
+            &:hover {
+              background: #F7FAFA;
+              border-color: #D5D9D9;
+            }
+          }
+
+          /* Angular Loading Component CSS Spin state */
+          i.spin {
+            animation: formSpin 1s linear infinite;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes formSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}

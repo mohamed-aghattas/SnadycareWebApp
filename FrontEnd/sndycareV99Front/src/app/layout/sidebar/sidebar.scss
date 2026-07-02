@@ -1,18 +1,226 @@
-.app-shell{display:flex;height:100vh;overflow:hidden}
-.sidebar{width:210px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column}
-.sidebar-logo{padding:20px 16px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
-.logo-icon{width:30px;height:30px;background:var(--brand);border-radius:8px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:15px}
-.logo-text{font-size:14px;font-weight:600;color:var(--text-1)}
-.logo-sub{font-size:11px;color:var(--text-3)}
-.sidebar-nav{padding:12px 10px;flex:1;overflow-y:auto}
-.nav-group-label{font-size:10px;font-weight:600;color:var(--text-3);text-transform:uppercase;letter-spacing:.6px;padding:10px 8px 4px}
-.nav-link{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:10px;font-size:13px;color:var(--text-2);margin-bottom:2px;transition:all .15s;text-decoration:none;i{font-size:17px;width:20px}&:hover{background:var(--bg);color:var(--text-1)}&.active{background:var(--brand-light);color:var(--brand-dark);font-weight:500}}
-.nav-badge{margin-left:auto;background:#E24B4A;color:#fff;font-size:10px;font-weight:600;padding:1px 6px;border-radius:20px}
-.sidebar-footer{padding:12px 10px;border-top:1px solid var(--border)}
-.user-row{display:flex;align-items:center;gap:9px;padding:6px 8px}
-.avatar-chip{width:28px;height:28px;border-radius:50%;background:#CECBF6;color:#3C3489;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;flex-shrink:0}
-.user-info{flex:1;min-width:0}
-.user-name{font-size:12px;font-weight:500;color:var(--text-1)}
-.user-role{font-size:10px;color:var(--text-3)}
-.icon-btn{background:none;border:none;cursor:pointer;color:var(--text-3);display:flex;align-items:center;justify-content:center;font-size:16px;padding:4px;border-radius:6px;&:hover{background:var(--bg);color:var(--text-1)}}
-.main-area{flex:1;overflow:hidden;display:flex;flex-direction:column}
+/* ==========================================================================
+   Amazon Style App Shell & Sidebar Layout
+   ========================================================================== */
+
+.app-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg); /* Amazon page background grey */
+}
+
+/* Sidebar: Flat, sharp, and lightweight */
+.sidebar {
+  width: 210px;
+  flex-shrink: 0;
+  background: var(--surface); /* Pure White */
+  border-right: 1px solid var(--border); /* Thin Amazon border line */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Sidebar Logo/Header */
+.sidebar-logo {
+  padding: 16px 14px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--surface-2); /* Shaded header look */
+}
+
+.logo-icon {
+  width: 28px;
+  height: 28px;
+  background: var(--brand); /* Amazon Amber */
+  border-radius: var(--radius-sm); /* Sharp 2px corners */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  font-size: 14px;
+}
+
+.logo-text {
+  font-size: 14px;
+  font-weight: 700; /* Bold Amazon heading emphasis */
+  color: var(--text-1); /* Off-black */
+}
+
+.logo-sub {
+  font-size: 11px;
+  color: var(--text-3); /* Muted gray captions */
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  padding: 10px 6px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.nav-group-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-2);
+  text-transform: none; /* Amazon avoids over-the-top tracking/uppercase */
+  padding: 12px 10px 4px;
+}
+
+.nav-subgroup {
+  padding-left: 16px;
+  margin-bottom: 8px;
+}
+
+.nav-sub-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: var(--text-2);
+  text-decoration: none;
+  margin-left: 6px;
+}
+
+.nav-sub-link:hover {
+  background: var(--surface-2);
+  color: var(--brand-dark);
+}
+
+.nav-sub-link.active {
+  background: var(--brand-light);
+  color: var(--warn-dark);
+}
+
+/* Navigation Links: Flat links, underlines/background shifts on hover */
+.nav-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm); /* Sharp 2px corners */
+  font-size: 13px;
+  color: var(--text-1); /* Amazon uses prominent text colors for links */
+  margin-bottom: 2px;
+  transition: background .1s ease, color .1s ease;
+  text-decoration: none;
+}
+
+.nav-link i {
+  font-size: 16px;
+  width: 18px;
+  color: var(--text-2); /* Muted icons by default */
+}
+
+.nav-link:hover {
+  background: var(--surface-2);
+  color: var(--brand-dark);
+  text-decoration: underline; /* Standard Amazon link hover pattern */
+}
+
+.nav-link:hover i {
+  color: var(--brand-dark);
+}
+
+/* Active Link State: Amber tint styling */
+.nav-link.active {
+  background: var(--brand-light); /* Light amber background */
+  color: var(--warn-dark); /* Dark amber text */
+  border-left: 3px solid var(--brand-dark); /* Solid amber anchor point */
+  font-weight: 700;
+  padding-left: 7px; /* Adjusting padding for the border left shift */
+}
+
+.nav-link.active i {
+  color: var(--brand-dark);
+}
+
+/* Badges: Uses Amazon Price/Alert Red for callouts */
+.nav-badge {
+  margin-left: auto;
+  background: var(--danger);
+  color: #FFFFFF;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: var(--radius-sm); /* Sharp corners */
+}
+
+/* Sidebar Footer & User Section */
+.sidebar-footer {
+  padding: 10px;
+  border-top: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.user-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+}
+
+/* Standardized profile avatar to match Amazon's neutral background grey */
+.avatar-chip {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #E3E6E6;
+  color: var(--text-1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+  border: 1px solid var(--border-2);
+}
+
+.user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.user-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-1);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.user-role {
+  font-size: 11px;
+  color: var(--text-2);
+}
+
+/* Icon Buttons */
+.icon-btn {
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  color: var(--text-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  padding: 4px;
+  border-radius: var(--radius-sm);
+}
+
+.icon-btn:hover {
+  background: #FFFFFF;
+  border-color: var(--border-2);
+  color: var(--text-1);
+}
+
+/* Core Layout Workspaces */
+.main-area {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}

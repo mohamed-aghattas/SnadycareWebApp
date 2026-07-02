@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router} from "@angular/router";
-import { BehaviorSubject , Observable , tap } from "rxjs";
+import { BehaviorSubject , Observable , tap, catchError, throwError } from "rxjs";
 import { environment } from '../../environments/environment';
-import { LoginRequest , JwtResponse } from "../models";
+import { JwtResponse } from "../models";
 
 @Injectable({ providedIn: 'root' })
 export class AuthService{
@@ -12,9 +12,18 @@ export class AuthService{
     
     constructor(private http : HttpClient , private router:Router ){}
 
-      login(req : LoginRequest): Observable<JwtResponse> {
+      login(req : { email: string; password: string }): Observable<JwtResponse> {
         return this.http.post<JwtResponse>(`${environment.apiUrl}/auth/login`, req).pipe(
-        tap(r => this.setSession(r))
+          tap((r) => {
+            if (!r?.token) {
+              throw new Error('Login response missing token');
+            }
+            this.setSession(r);
+          }),
+          catchError((err) => {
+            const message = err?.error?.message || err?.message || 'Login failed';
+            return throwError(() => new Error(message));
+          })
         );
     }
 
