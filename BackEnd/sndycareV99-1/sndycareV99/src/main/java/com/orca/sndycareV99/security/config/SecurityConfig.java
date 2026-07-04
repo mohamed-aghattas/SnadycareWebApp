@@ -1,6 +1,8 @@
 package com.orca.sndycareV99.security.config;
 
 import com.orca.sndycareV99.auth.jwt.JwtFilter;
+import com.orca.sndycareV99.security.filters.ResidenceContextFilter;
+import com.orca.sndycareV99.service.ResidanceContextService;
 import jakarta.servlet.Filter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -28,6 +30,7 @@ import java.util.Collections;
 public class SecurityConfig {
 
     private final JwtFilter jwtFilter;
+    private final ResidenceContextFilter residenceContextFilter;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
@@ -46,7 +49,8 @@ public class SecurityConfig {
                     config.setAllowCredentials(true);
                     return config;
                 }))
-                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+                .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterAfter(residenceContextFilter, JwtFilter.class);
 
         return http.build();
     }
