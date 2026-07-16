@@ -19,7 +19,7 @@ public class Residence  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, length = 255,unique = true)
+    @Column(nullable = false, length = 255)
     private String name;
 
     @Column(length = 255)
@@ -37,7 +37,21 @@ public class Residence  {
             foreignKey = @ForeignKey(name = "fk_residences_creator"))
     private User createdBy;
 
-    @CreationTimestamp
+
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

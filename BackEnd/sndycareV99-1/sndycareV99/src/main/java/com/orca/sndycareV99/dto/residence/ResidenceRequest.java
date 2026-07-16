@@ -29,7 +29,4 @@ public class ResidenceRequest {
     @Min(1)
     private Integer numbreUnits;
 
-    @NotNull
-    @Min(1)
-    private Long userId;
 }

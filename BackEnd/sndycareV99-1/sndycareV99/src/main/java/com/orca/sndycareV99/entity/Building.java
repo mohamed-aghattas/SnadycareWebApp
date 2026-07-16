@@ -4,6 +4,8 @@ import com.orca.sndycareV99.interfaces.BelongsToResidence;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "buildings")
 @Getter
@@ -26,4 +28,29 @@ public class Building  implements BelongsToResidence {
     private String name;
 
     private Integer floors;
+<<<<<<< Updated upstream
+=======
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public Residence getResidence() {
+        return this.residence;
+    }
+>>>>>>> Stashed changes
 }

@@ -1,11 +1,15 @@
 package com.orca.sndycareV99.service;
 
 import com.orca.sndycareV99.auth.repository.UserRepository;
+import com.orca.sndycareV99.auth.service.CustomUserDetailsService;
 import com.orca.sndycareV99.dto.residence.ResidenceRequest;
 import com.orca.sndycareV99.dto.residence.ResidenceResponse;
 import com.orca.sndycareV99.entity.Residence;
 import com.orca.sndycareV99.entity.User;
+import com.orca.sndycareV99.exception.ResourceAlreadyExistsException;
 import com.orca.sndycareV99.repository.ResidenceRepository;
+import com.orca.sndycareV99.security.user.CustomUserPrincipal;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -21,37 +25,35 @@ public class ResidenceService {
 
     private final ResidenceRepository residenceRepository;
     private final UserRepository userRepository;
+    private final CurrentUserService currentUserService;
 
-    public ResidenceResponse createResidence(ResidenceRequest residenceRequest) {
-        User user ;
-        if(residenceRequest.getUserId() !=null){
-             user = userRepository.findById(residenceRequest.getUserId()).orElseThrow(
-                    () -> new UsernameNotFoundException("User not found"));
-        }else {
-            throw new UsernameNotFoundException("User not found");
-        }
+    public ResidenceResponse createResidence(ResidenceRequest request) {
 
-        if(residenceRepository.existsByName(residenceRequest.getResidenceName())){
-            throw  new UsernameNotFoundException("Change name of new residence ");
-
+        User currentUser = currentUserService.getUser();
+        String cleanedName = request.getResidenceName().trim() ;
+        if (residenceRepository.existsByNameIgnoreCaseAndCreatedById(cleanedName,currentUser.getId())) {
+            throw new ResourceAlreadyExistsException("Residence with name "+ cleanedName +  " already exists for this user.");
         }
 
         Residence residence = Residence.builder()
-                .name(residenceRequest.getResidenceName())
-                .address(residenceRequest.getAddress())
-                .city(residenceRequest.getCity())
-                .totalUnits(residenceRequest.getNumbreUnits())
-                .createdBy(user).build();
-        Residence newResidence = residenceRepository.save(residence);
+                .name(request.getResidenceName().trim())
+                .address(request.getAddress())
+                .city(request.getCity())
+                .totalUnits(request.getNumbreUnits())
+                .createdBy(currentUser)
+                .build();
 
-        return toResponse(newResidence);
+        Residence savedResidence = residenceRepository.save(residence);
+
+        return toResponse(savedResidence);
     }
 
     public ResidenceResponse getResidence(Long id) {
-        if(id == null)
-            throw new UsernameNotFoundException("Residence not found");
 
-        Residence   residence = residenceRepository.findById(id).orElseThrow();
+        Long currentUserId = currentUserService.getCurrentUser().getUser().getId();
+
+        Residence residence = residenceRepository.findByIdAndCreatedBy_Id(id, currentUserId)
+                .orElseThrow(() -> new EntityNotFoundException("Residence not found or you don't have permission to access it."));
 
         return toResponse(residence);
     }
@@ -85,9 +87,11 @@ public class ResidenceService {
         return toResponse(updatedResidence);
     }
 
-    public List<ResidenceResponse> getAllResidences() {
+    public List<ResidenceResponse> getAllResidencesRolatedToUser() {
 
-        List<Residence> residences = residenceRepository.findAll();
+        Long userId = currentUserService.getCurrentUserId();
+
+        List<Residence> residences = residenceRepository.findAllByCreatedById(userId);
         return residences
                 .stream()
                 .map(this::toResponse)
@@ -100,6 +104,7 @@ public class ResidenceService {
                 .city(residence.getCity())
                 .address(residence.getAddress())
                 .name(residence.getName())
+                .id(residence.getId())
                 .build();
 
     }

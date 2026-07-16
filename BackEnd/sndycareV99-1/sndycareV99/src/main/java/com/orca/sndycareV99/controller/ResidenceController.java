@@ -22,7 +22,12 @@ public class ResidenceController {
 
     @GetMapping
     public ResponseEntity<List<ResidenceResponse>> getAllResidence(){
-      return ResponseEntity.ok(residenceService.getAllResidences());
+      return ResponseEntity.ok(residenceService.getAllResidencesRolatedToUser());
+    }
+
+    @GetMapping("/{id:\\d+}")
+    public ResponseEntity<ResidenceResponse> getResidence(@PathVariable Long id){
+        return ResponseEntity.ok(residenceService.getResidence(id));
     }
 
     @PostMapping

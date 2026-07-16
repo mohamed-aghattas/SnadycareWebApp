@@ -4,9 +4,11 @@ package com.orca.sndycareV99.entity;
 import com.orca.sndycareV99.interfaces.BelongsToResidence;
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "properties",
@@ -57,4 +59,22 @@ public class Property implements BelongsToResidence {
     @Column(length = 20)
     @Builder.Default
     private PropertyStatus status = PropertyStatus.AVAILABLE;
+
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }

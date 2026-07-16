@@ -9,6 +9,7 @@ import lombok.*;
 @Builder
 public class ResidenceResponse {
 
+    private Long id;
     private String name;
     private String address;
     private String city;
