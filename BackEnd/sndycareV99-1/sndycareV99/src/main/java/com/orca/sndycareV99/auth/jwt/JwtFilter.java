@@ -27,7 +27,8 @@ public class JwtFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
 
-        String header = request.getHeader("Authorization");
+        try{
+            String header = request.getHeader("Authorization");
         if (header == null || !header.startsWith("Bearer ")) {
             filterChain.doFilter(request,response);
             return;
@@ -44,6 +45,13 @@ public class JwtFilter extends OncePerRequestFilter {
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             }
         }
+    } catch (io.jsonwebtoken.ExpiredJwtException e) {
+        logger.error("JWT token is expired: {}", e);
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setContentType("application/json");
+        response.getWriter().write("{\"error\": \"Unauthorized\", \"message\": \"JWT token has expired. Please log in again.\"}");
+        return;
+    }
         filterChain.doFilter(request,response);
     }
 }
