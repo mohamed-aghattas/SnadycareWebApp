@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "accounts")
@@ -34,4 +35,40 @@ public class Account implements BelongsToResidence {
     @Column(precision = 12, scale = 2)
     @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
+<<<<<<< Updated upstream
+=======
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    public enum AccountType {
+        ASSET,
+        LIABILITY,
+        EQUITY,
+        REVENUE,
+        EXPENSE
+    }
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    protected void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
+
+    @Override
+    public Residence getResidence() {
+        return this.residence;
+    }
+>>>>>>> Stashed changes
 }
